@@ -1,16 +1,17 @@
 export const workouts = [
     {
-      name: 'dead lift',
+      name: 'deadlift',
       price: 799,
-      description: 'A large phone with one of the best screens'
+      description: 'A large phone with one of the best screens',
+      href:"https://angular.io/tutorial"
     },
     {
-      name: 'Phone Mini',
+      name: 'benchpress',
       price: 699,
       description: 'A great phone with one of the best cameras'
     },
     {
-      name: 'Phone Standard',
+      name: 'squats',
       price: 299,
       description: ''
     }

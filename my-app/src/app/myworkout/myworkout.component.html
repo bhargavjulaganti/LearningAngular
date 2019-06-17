@@ -1,0 +1,12 @@
+<h1>
+  myworkout log!
+</h1>
+
+
+<div *ngFor="let workout of workouts">
+  <h3>
+    <a [title]="workout.name + ' details'" [routerLink]="[workout.name]">
+      {{ workout.name }}
+    </a>
+  </h3>
+</div>
