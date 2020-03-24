@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { DeadliftComponent } from './deadlift/deadlift.component';
 import { BenchpressComponent } from './benchpress/benchpress.component';
 import { SquatComponent } from './squat/squat.component';
+import { HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { SquatComponent } from './squat/squat.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     RouterModule.forRoot([
       { path: '', component:MyworkoutComponent},
       { path: 'deadlift', component:DeadliftComponent},
