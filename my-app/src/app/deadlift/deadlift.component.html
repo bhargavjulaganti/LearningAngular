@@ -1,28 +1,37 @@
 <p>
   deadlift works!
 </p>
-<!-- <table mdbTable striped="true">
-  <thead>
-    <tr> -->
-      <!-- <th *ngFor="let head of headElements" scope="col">{{head}} </th> -->
-     <!--<th  scope="col">"Bhargava" </th>
-    </tr>
+
+<!-- <p> {{deadliftHistory}} </p>
+
+<p> {{Count}} </p>
+
+<p> {{Items[0].CreatedDate}} </p>
+
+<p> {{Items[0].CreatedDate}} </p>
+
+<p> {{Items.length}} </p>
+
+<li *ngFor="let item of Items">
+  {{ item.CreatedDate  }}
+</li> -->
+
+<table striped="true" responsive="true" >
+  <thead class="black white-text">
+    <th>Set1</th>
+    <th>Set2</th>
+    <th>Created Date</th>
   </thead>
-  <tbody> -->
-    <!-- <tr mdbTableCol *ngFor="let el of elements">
-      <th scope="row">""</th>
-      <td>{{el.first}}</td>
-      <td>{{el.last}}</td>
-      <td>{{el.handle}}</td>
-    </tr> -->
-    <!--  <tr mdbTableCol >
-      <th scope="row">""</th>
-      <td>{{el.first}}</td>
-      <td>{{el.last}}</td>
-      <td>{{el.handle}}</td>
+  <tbody  striped="true">
+    <tr  *ngFor="let item of Items">
+      <!-- <th scope="row">{{el.id}}</th> -->
+      <td>{{item.Set1}}</td>
+      <td>{{item.Set2}}</td>
+      <td>{{item.CreatedDate}}</td>
     </tr>
   </tbody>
-</table> -->
+</table>
+
 
 
 <!-- *** Import doc to show data -->
