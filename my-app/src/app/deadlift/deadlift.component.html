@@ -1,6 +1,6 @@
-<p>
+<!-- <p>
   deadlift works!
-</p>
+</p> -->
 
 <!-- <p> {{deadliftHistory}} </p>
 
@@ -16,21 +16,99 @@
   {{ item.CreatedDate  }}
 </li> -->
 
-<table striped="true" responsive="true" >
-  <thead class="black white-text">
-    <th>Set1</th>
-    <th>Set2</th>
-    <th>Created Date</th>
+<!-- <div class="row">
+  <div class="col">
+     <input type="text" class="form-control-inline">
+  </div>
+  <div class="col">
+     <input type="text" class="form-control-inline">
+  </div>
+</div>
+
+<div class="form-group row">
+  <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+  <div class="col-sm-10">
+    <input type="text" readonly="" class="form-control" id="staticEmail" value="email@example.com">
+  </div>
+</div>
+
+ <div class="form-group">
+  <label for="exampleInputEmail1">Email address</label>
+  <input type="email" class="form-control" style="width:170px;" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+</div>
+
+<div class="input-group">
+  <input type="text" class="form-control" placeholder="Start"/>
+  <span class="input-group-addon">-</span>
+  <input type="text" class="form-control" placeholder="End"/>
+</div> -->
+<div>
+  <label></label>
+</div>
+
+<div class="form-group has-success">
+  <label class="form-control-label" >Set1</label>
+  <input type="text"  class="form-control-inline" id="inputValid" >
+  <label></label>
+  <span class="input-group-addon">     Reps         </span>
+  <input type="text"  class="form-control-inline" id="inputValid" >
+</div>
+
+<div class="form-group has-success">
+  <label class="form-control-label" >Set2</label>
+  <input type="text"  class="form-control-inline" id="inputValid" >
+  <span class="input-group-addon">     Reps         </span>
+  <input type="text"  class="form-control-inline" id="inputValid" >
+</div>
+
+<div class="form-group has-success">
+  <label class="form-control-label" >Set3</label>
+  <input type="text"  class="form-control-inline" id="inputValid" >
+  <span class="input-group-addon">     Reps         </span>
+  <input type="text"  class="form-control-inline" id="inputValid" >
+</div>
+
+
+<div class="form-group has-success">
+  <label class="form-control-label" >Set4</label>
+  <input type="text"  class="form-control-inline" id="inputValid" >
+  <span class="input-group-addon">     Reps         </span>
+  <input type="text"  class="form-control-inline" id="inputValid" >
+</div>
+
+<button type="submit" class="btn btn-primary">Submit</button>
+
+<!-- Added below div to keep space between the Submit button and Table -->
+<div>
+  <label></label>
+</div>
+
+
+<table class="table table-hover" style="width:1500px;">
+  <thead>
+    <tr>
+      <th scope="col">Set1</th>
+      <th scope="col">Set2</th>
+      <th scope="col">Set3</th>
+      <th scope="col">Set4</th>
+      <th scope="col">CreatedDate</th>
+    </tr>
   </thead>
-  <tbody  striped="true">
-    <tr  *ngFor="let item of Items">
-      <!-- <th scope="row">{{el.id}}</th> -->
+  <tbody>
+
+    <tr class="table-primary" *ngFor="let item of Items">
+      <!-- <th scope="row">Primary</th> -->
       <td>{{item.Set1}}</td>
       <td>{{item.Set2}}</td>
+      <td>{{item.Set3}}</td>
+      <td>{{item.Set4}}</td>
       <td>{{item.CreatedDate}}</td>
     </tr>
   </tbody>
 </table>
+
+
 
 
 

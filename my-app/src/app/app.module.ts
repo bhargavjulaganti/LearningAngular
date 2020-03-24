@@ -10,6 +10,9 @@ import { BenchpressComponent } from './benchpress/benchpress.component';
 import { SquatComponent } from './squat/squat.component';
 import { HttpClientModule} from '@angular/common/http';
 
+// Third party modules
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,11 +26,12 @@ import { HttpClientModule} from '@angular/common/http';
     AppRoutingModule,
     HttpClientModule,
     RouterModule.forRoot([
-      { path: '', component:MyworkoutComponent},
-      { path: 'deadlift', component:DeadliftComponent},
-      { path: 'benchpress', component:BenchpressComponent},
-      { path: 'squats', component:SquatComponent}
-  ])
+      { path: '', component: MyworkoutComponent},
+      { path: 'deadlift', component: DeadliftComponent},
+      { path: 'benchpress', component: BenchpressComponent},
+      { path: 'squats', component: SquatComponent}
+  ]),
+  NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
