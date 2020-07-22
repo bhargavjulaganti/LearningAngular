@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-benchpress',
+  selector: 'app-benchpress,ngbd-collapse-basic',
   templateUrl: './benchpress.component.html',
   styleUrls: ['./benchpress.component.css']
 })
@@ -11,5 +11,7 @@ export class BenchpressComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  public isCollapsed = false;
 
 }
