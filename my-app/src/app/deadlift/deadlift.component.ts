@@ -17,6 +17,23 @@ export class DeadliftComponent implements OnInit {
   mydata: GetData;
   Count: number;
   Items: Array<any>;
+  Workouts: Array<string>;
+  ChestWorkout: Array<string>;
+  MyWorkout: Map<string, string[]>;
+
+  private map = new Map<string, string[]>([
+    ['Chest', ['Dumbbell Pullover', 'Dumbbell Decline Bench Press', 'Barbell Bench Press', 'Pec Deck Fly']],
+    ['Back', ['New York', 'Austin']],
+    ['Shoulders', ['']],
+    ['Abs', ['Bent Knee Hip Raise', 'Hand Over-Head Crunch', 'Elbow to Knee Sit Ups', 'Hanging Leg Raises']],
+    ['Biceps', ['']],
+    ['Triceps', ['']],
+    ['Calves', ['']],
+  ]);
+
+  country: string;
+  city: string;
+
   constructor(private http: HttpClient) { }
 
   // ngOnInit() {
@@ -33,7 +50,7 @@ export class DeadliftComponent implements OnInit {
 
     this.deadliftHistory = this.http.get<GetData>(`${DeadliftComponent.hostName}/getworkouthistory`)
       .pipe(map(data => {
-        if(data){
+        if (data) {
           this.deadliftHistory = JSON.stringify(data);
           this.Count = data.Count;
           this.Items = data.Items;
@@ -44,4 +61,13 @@ export class DeadliftComponent implements OnInit {
         }
       })).subscribe();
   }
+
+  get countries(): string[] {
+    return Array.from(this.map.keys());
+  }
+
+  get cities(): string[] | undefined {
+    return this.map.get(this.country);
+  }
+
 }
