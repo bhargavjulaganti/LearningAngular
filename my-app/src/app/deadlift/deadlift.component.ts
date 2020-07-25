@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, finalize, map } from 'rxjs/operators';
 import { GetData } from './deadlift.response';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-deadlift',
@@ -13,19 +14,26 @@ export class DeadliftComponent implements OnInit {
   private static readonly hostName = "https://q6rrg5mw2k.execute-api.us-east-2.amazonaws.com/default/";
 
 
+  public loanQuickSearchForm: FormGroup;
+
   deadliftHistory: any;
   mydata: GetData;
   Count: number;
-  Items: Array<any>;
+  Items: any;
+  responseData: any;
   Workouts: Array<string>;
   ChestWorkout: Array<string>;
   MyWorkout: Map<string, string[]>;
+  ShowData: boolean;
+  selectedWorkoutValue: any;
+
 
   private map = new Map<string, string[]>([
-    ['Chest', ['Dumbbell Pullover', 'Dumbbell Decline Bench Press', 'Barbell Bench Press', 'Pec Deck Fly']],
+    // tslint:disable-next-line: max-line-length
+    ['Chest', ['DumbbellPullOver', 'DumbbellDeclineBenchPress', 'BarbellBenchPress', 'PecDeckFly', 'DumbbellBenchPress', 'DumbbellInclineBenchPress']],
     ['Back', ['New York', 'Austin']],
     ['Shoulders', ['']],
-    ['Abs', ['Bent Knee Hip Raise', 'Hand Over-Head Crunch', 'Elbow to Knee Sit Ups', 'Hanging Leg Raises']],
+    ['Abs', ['BentKneeHipRaise', 'HandOver-HeadCrunch', 'ElbowToKneeSitUps', 'HangingLegRaises', 'BasicCrunches', 'MedicineBallCrunches']],
     ['Biceps', ['']],
     ['Triceps', ['']],
     ['Calves', ['']],
@@ -36,28 +44,12 @@ export class DeadliftComponent implements OnInit {
 
   constructor(private http: HttpClient) { }
 
-  // ngOnInit() {
-
-  //   this.deadliftHistory = this.http.get<string>(`${DeadliftComponent.hostName}/getworkouthistory`)
-  //     .pipe().subscribe((data: any) => {
-  //       console.log(data.Count);
-  //       console.log(JSON.stringify(data));
-  //     });
-  // }
-
-
   ngOnInit() {
-
-    this.deadliftHistory = this.http.get<GetData>(`${DeadliftComponent.hostName}/getworkouthistory`)
+    // tslint:disable-next-line: max-line-length
+    this.deadliftHistory = this.http.get<GetData>(`${DeadliftComponent.hostName}/getworkouthistory?TableName=Chest&WorkOutType=BarbellBenchPress`)
       .pipe(map(data => {
         if (data) {
-          this.deadliftHistory = JSON.stringify(data);
-          this.Count = data.Count;
-          this.Items = data.Items;
-          console.log(this.Count);
-          console.log(this.Items[0].CreatedDate);
-          console.log(this.Items[0].Set1);
-          console.log(this.Items[1].CreatedDate);
+          this.Items = data;
         }
       })).subscribe();
   }
@@ -70,4 +62,26 @@ export class DeadliftComponent implements OnInit {
     return this.map.get(this.country);
   }
 
+  selectedWorkoutType(event: any) {
+    this.selectedWorkoutValue = event.target.value;
+  }
+
+  selectedExercise(event: any) {
+    console.log('selected Exercise is ' + event.target.value);
+    if (event.target.value) {
+      console.log('Inside the if loop' + JSON.stringify(this.Items));
+
+      const exerciseType = event.target.value;
+
+      // tslint:disable-next-line: max-line-length
+      this.deadliftHistory = this.http.get<GetData>(`${DeadliftComponent.hostName}/getworkouthistory?TableName=` + this.selectedWorkoutValue + `&WorkOutType=` + exerciseType)
+      .pipe(map(data => {
+        if (data) {
+          this.Items = data;
+
+          this.ShowData = true;
+        }
+      })).subscribe();
+    }
+  }
 }

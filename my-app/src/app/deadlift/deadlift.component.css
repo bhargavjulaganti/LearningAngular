@@ -1,3 +1,11 @@
 select {
-    margin: 25px;
-  }
+  margin: 25px;
+}
+
+input {
+  width: 100px;
+}
+
+.Set1 {
+  margin: 1px;
+}
