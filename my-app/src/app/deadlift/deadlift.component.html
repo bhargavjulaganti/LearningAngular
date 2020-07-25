@@ -9,7 +9,7 @@
     <option *ngFor="let country of countries" [value]="country"> {{ country }} </option>
   </select>
 
-  <select  (change)="selectedExercise($event)" *ngIf="country" [(ngModel)]="city" [value]="city" class="btn btn-secondary dropdown-toggle">
+  <select  (change)="selectedExcerciseType($event)" *ngIf="country" [(ngModel)]="city" [value]="city" class="btn btn-secondary dropdown-toggle">
     <option *ngFor="let city of cities"> {{ city }} </option>
   </select>
 

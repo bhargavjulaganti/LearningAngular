@@ -26,6 +26,7 @@ export class DeadliftComponent implements OnInit {
   MyWorkout: Map<string, string[]>;
   ShowData: boolean;
   selectedWorkoutValue: any;
+  selectedExcerciseValue: any;
 
 
   private map = new Map<string, string[]>([
@@ -66,15 +67,15 @@ export class DeadliftComponent implements OnInit {
     this.selectedWorkoutValue = event.target.value;
   }
 
-  selectedExercise(event: any) {
-    console.log('selected Exercise is ' + event.target.value);
-    if (event.target.value) {
-      console.log('Inside the if loop' + JSON.stringify(this.Items));
+  selectedExcerciseType(event: any) {
+    this.selectedExcerciseValue = event.target.value;
+    this.selectedExercise();
+    this.PostWorkout();
+  }
 
-      const exerciseType = event.target.value;
-
-      // tslint:disable-next-line: max-line-length
-      this.deadliftHistory = this.http.get<GetData>(`${DeadliftComponent.hostName}/getworkouthistory?TableName=` + this.selectedWorkoutValue + `&WorkOutType=` + exerciseType)
+  selectedExercise() {
+    // tslint:disable-next-line: max-line-length
+    this.deadliftHistory = this.http.get<GetData>(`${DeadliftComponent.hostName}/getworkouthistory?TableName=` + this.selectedWorkoutValue + `&WorkOutType=` + this.selectedExcerciseValue)
       .pipe(map(data => {
         if (data) {
           this.Items = data;
@@ -82,6 +83,27 @@ export class DeadliftComponent implements OnInit {
           this.ShowData = true;
         }
       })).subscribe();
-    }
+  }
+
+  PostWorkout() {
+
+    var postBody =
+    {
+      "TableName": this.selectedWorkoutValue,
+      "CreatedDate": "12/2/22",
+      "WorkOutType": this.selectedExcerciseValue,
+      "Notes": "From Post man",
+      "Set1": "TestSet1",
+      "Set2": "TestSet2",
+      "Set3": "TestSet3",
+      "Set4": "TestSet4"
+    };
+
+    const url = `${DeadliftComponent.hostName}/PostDataIntoDynamo`;
+
+    this.http.post<any>(url, postBody).subscribe
+      (data => {
+        console.log("the post data is" + data);
+      });
   }
 }
