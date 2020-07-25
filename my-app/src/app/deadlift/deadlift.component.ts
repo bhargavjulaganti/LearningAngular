@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { catchError, finalize, map } from 'rxjs/operators';
 import { GetData } from './deadlift.response';
-import { FormGroup } from '@angular/forms';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-deadlift',
@@ -11,10 +12,10 @@ import { FormGroup } from '@angular/forms';
 })
 export class DeadliftComponent implements OnInit {
 
-  private static readonly hostName = "https://q6rrg5mw2k.execute-api.us-east-2.amazonaws.com/default/";
+  private static readonly hostName = "https://q6rrg5mw2k.execute-api.us-east-2.amazonaws.com/default";
 
 
-  public loanQuickSearchForm: FormGroup;
+  //loginForm: FormGroup;
 
   deadliftHistory: any;
   mydata: GetData;
@@ -43,6 +44,22 @@ export class DeadliftComponent implements OnInit {
   country: string;
   city: string;
 
+  loginForm = new FormGroup({
+    TextID: new FormControl('')
+  });
+
+  EnterWorkoutForm = new FormGroup({
+    Set1: new FormControl(''),
+    Reps1: new FormControl(''),
+    Set2: new FormControl(''),
+    Reps2: new FormControl(''),
+    Set3: new FormControl(''),
+    Reps3: new FormControl(''),
+    Set4: new FormControl(''),
+    Reps4: new FormControl(''),
+    Notes: new FormControl('')
+  });
+
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
@@ -53,6 +70,7 @@ export class DeadliftComponent implements OnInit {
           this.Items = data;
         }
       })).subscribe();
+
   }
 
   get countries(): string[] {
@@ -65,12 +83,14 @@ export class DeadliftComponent implements OnInit {
 
   selectedWorkoutType(event: any) {
     this.selectedWorkoutValue = event.target.value;
+    console.log("************");
+    console.log(this.loginForm.value.TextID);
   }
 
   selectedExcerciseType(event: any) {
     this.selectedExcerciseValue = event.target.value;
     this.selectedExercise();
-    this.PostWorkout();
+    //this.PostWorkout();
   }
 
   selectedExercise() {
@@ -90,13 +110,13 @@ export class DeadliftComponent implements OnInit {
     var postBody =
     {
       "TableName": this.selectedWorkoutValue,
-      "CreatedDate": "12/2/22",
+      "CreatedDate": formatDate(new Date(), 'MM/dd/yyyy', 'en'),
       "WorkOutType": this.selectedExcerciseValue,
-      "Notes": "From Post man",
-      "Set1": "TestSet1",
-      "Set2": "TestSet2",
-      "Set3": "TestSet3",
-      "Set4": "TestSet4"
+      "Notes": this.EnterWorkoutForm.value.Notes,
+      "Set1": `${this.EnterWorkoutForm.value.Set1}` + `*` + this.EnterWorkoutForm.value.Reps1,
+      "Set2": `${this.EnterWorkoutForm.value.Set2}` + `*` + this.EnterWorkoutForm.value.Reps2,
+      "Set3": `${this.EnterWorkoutForm.value.Set3}` + `*` + this.EnterWorkoutForm.value.Reps3,
+      "Set4": `${this.EnterWorkoutForm.value.Set4}` + `*` + this.EnterWorkoutForm.value.Reps4
     };
 
     const url = `${DeadliftComponent.hostName}/PostDataIntoDynamo`;
