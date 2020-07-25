@@ -1,55 +1,59 @@
-
 <div>
   <label></label>
 </div>
 
 
 
-  <select (change)="selectedWorkoutType($event)" [(ngModel)]="country" class="btn btn-secondary dropdown-toggle">
-    <option *ngFor="let country of countries" [value]="country"> {{ country }} </option>
-  </select>
+<select (change)="selectedWorkoutType($event)" [(ngModel)]="country" class="btn btn-secondary dropdown-toggle">
+  <option *ngFor="let country of countries" [value]="country"> {{ country }} </option>
+</select>
 
-  <select  (change)="selectedExercise($event)" *ngIf="country" [(ngModel)]="city" [value]="city" class="btn btn-secondary dropdown-toggle">
-    <option *ngFor="let city of cities"> {{ city }} </option>
-  </select>
+<select (change)="selectedExcerciseType($event)" *ngIf="country" [(ngModel)]="city" [value]="city"
+  class="btn btn-secondary dropdown-toggle">
+  <option *ngFor="let city of cities"> {{ city }} </option>
+</select>
 
+<form [formGroup]="EnterWorkoutForm" (ngSubmit)="onSubmit()">
+  <div class="form-group has-success">
+    <label class="form-control-label">Set1</label>
+    <input type="text" class="form-control-inline" id="Set1" formControlName="Set1">
+    <!-- formControlName="Set1" -->
+    <label></label>
+    <span class="input-group-addon"> Reps </span>
+    <input type="text" class="form-control-inline" id="Set1Reps" formControlName="Reps1">
+  </div>
 
+  <div class="form-group has-success">
+    <label class="form-control-label">Set2</label>
+    <input type="text" class="form-control-inline" id="Set2" formControlName="Set2">
+    <span class="input-group-addon"> Reps </span>
+    <input type="text" class="form-control-inline" id="Set2Reps" formControlName="Reps2">
+  </div>
 
-
-
-
-
-<div class="form-group has-success">
-  <label class="form-control-label">Set1</label>
-  <input type="text" class="form-control-inline" id="Set1">
-  <label></label>
-  <span class="input-group-addon"> Reps </span>
-  <input type="text" class="form-control-inline" id="Set1Reps">
-</div>
-
-<div class="form-group has-success">
-  <label class="form-control-label">Set2</label>
-  <input type="text" class="form-control-inline" id="Set2">
-  <span class="input-group-addon"> Reps </span>
-  <input type="text" class="form-control-inline" id="Set2Reps">
-</div>
-
-<div class="form-group has-success">
-  <label class="form-control-label">Set3</label>
-  <input type="text" class="form-control-inline" id="Set3">
-  <span class="input-group-addon"> Reps </span>
-  <input type="text" class="form-control-inline" id="Set3Reps">
-</div>
+  <div class="form-group has-success">
+    <label class="form-control-label">Set3</label>
+    <input type="text" class="form-control-inline" id="Set3" formControlName="Set3">
+    <span class="input-group-addon"> Reps </span>
+    <input type="text" class="form-control-inline" id="Set3Reps" formControlName="Reps3">
+  </div>
 
 
-<div class="form-group has-success">
-  <label class="form-control-label">Set4</label>
-  <input type="text" class="form-control-inline" id="Set4">
-  <span class="input-group-addon"> Reps </span>
-  <input type="text" class="form-control-inline" id="Set4Reps">
-</div>
+  <div class="form-group has-success">
+    <label class="form-control-label">Set4</label>
+    <input type="text" class="form-control-inline" id="Set4" formControlName="Set4">
+    <span class="input-group-addon"> Reps </span>
+    <input type="text" class="form-control-inline" id="Set4Reps" formControlName="Reps4">
+  </div>
 
-<button type="submit" class="btn btn-primary">Submit</button>
+  <div class="form-group has-success">
+    <label class="form-control-label">Notes</label>
+    <input type="text" class="form-control-inline" id="Notes" formControlName="Notes">
+  </div>
+
+  <button type="button" (click)="PostWorkout()" class="btn btn-primary">Submit</button>
+
+
+</form>
 
 <!-- Added below div to keep space between the Submit button and Table -->
 <div>
@@ -57,7 +61,7 @@
 </div>
 
 
-<table  *ngIf="ShowData" class="table table-hover table-bordered" style="width:25%">
+<table *ngIf="ShowData" class="table table-hover table-bordered" style="width:25%">
   <thead>
     <tr>
       <th scope="col">CreatedDate</th>
