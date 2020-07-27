@@ -28,17 +28,18 @@ export class DeadliftComponent implements OnInit {
   ShowData: boolean;
   selectedWorkoutValue: any;
   selectedExcerciseValue: any;
+  successMessage:any;
 
 
   private map = new Map<string, string[]>([
     // tslint:disable-next-line: max-line-length
     ['Chest', ['DumbbellPullOver', 'DumbbellDeclineBenchPress', 'BarbellBenchPress', 'PecDeckFly', 'DumbbellBenchPress', 'DumbbellInclineBenchPress']],
     ['Back', ['New York', 'Austin']],
-    ['Shoulders', ['']],
+    ['Shoulders', ['FrontDeltRaise','MachineShoulderPress','BarbellShoulderPress','FrontPlateRaise']],
     ['Abs', ['BentKneeHipRaise', 'HandOver-HeadCrunch', 'ElbowToKneeSitUps', 'HangingLegRaises', 'BasicCrunches', 'MedicineBallCrunches']],
     ['Biceps', ['']],
-    ['Triceps', ['']],
-    ['Calves', ['']],
+    ['Triceps', ['SkullCrusherEZBar','SeatedDumbbellTricepsExtension','OverheadTricepsExtension']],
+    ['Legs', ['BarbellSquats','LegPress','LegExtensions','GoodMornings','DumbbellStiffLegDeadlift','DumbbellSquats','SeatedCalfRaise']]
   ]);
 
   country: string;
@@ -124,6 +125,7 @@ export class DeadliftComponent implements OnInit {
     this.http.post<any>(url, postBody).subscribe
       (data => {
         console.log("the post data is" + data);
+        this.successMessage = data;
       });
   }
 }
