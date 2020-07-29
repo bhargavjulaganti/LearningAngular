@@ -33,11 +33,11 @@ export class DeadliftComponent implements OnInit {
 
   private map = new Map<string, string[]>([
     // tslint:disable-next-line: max-line-length
-    ['Chest', ['DumbbellPullOver', 'DumbbellDeclineBenchPress', 'BarbellBenchPress', 'PecDeckFly', 'DumbbellBenchPress', 'DumbbellInclineBenchPress']],
-    ['Back', ['New York', 'Austin']],
+    ['Chest', ['DumbbellPullOver', 'DumbbellDeclineBenchPress', 'BarbellBenchPress', 'PecDeckFly', 'DumbbellBenchPress', 'DumbbellInclineBenchPress', 'DumbbellFlys']],
+    ['Back', ['SeatedCableRowsWideGrip', 'OneArmDumbbellRow', 'CloseGripFrontLatPulldown', 'StraightArmPulldown']],
     ['Shoulders', ['FrontDeltRaise','MachineShoulderPress','BarbellShoulderPress','FrontPlateRaise']],
-    ['Abs', ['BentKneeHipRaise', 'HandOver-HeadCrunch', 'ElbowToKneeSitUps', 'HangingLegRaises', 'BasicCrunches', 'MedicineBallCrunches']],
-    ['Biceps', ['']],
+    ['Abs', ['BentKneeHipRaise', 'HandOver-HeadCrunch', 'ElbowToKneeSitUps', 'HangingLegRaises', 'BasicCrunches', 'MedicineBallCrunches', 'SeatedLegTucks']],
+    ['Biceps', ['CloseGripEZBarCurl', 'CableBicepCurls', 'CableHammerCurls']],
     ['Triceps', ['SkullCrusherEZBar','SeatedDumbbellTricepsExtension','OverheadTricepsExtension']],
     ['Legs', ['BarbellSquats','LegPress','LegExtensions','GoodMornings','DumbbellStiffLegDeadlift','DumbbellSquats','SeatedCalfRaise']]
   ]);
