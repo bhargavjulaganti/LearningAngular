@@ -53,14 +53,11 @@
   <button type="button" (click)="PostWorkout()" class="btn btn-primary">Submit</button>
 
   <h3></h3>
-
-
 </form>
 
-<!-- Added below div to keep space between the Submit button and Table -->
-<div>
-  <label>{{successMessage}}</label>
-</div>
+<p *ngIf="showAlert" style="width:310px">
+  <ngb-alert type="success" style="color: black"(close)="close()">{{successMessage}}</ngb-alert>
+</p>
 
 
 <table *ngIf="ShowData" class="table table-hover table-bordered" style="width:25%">

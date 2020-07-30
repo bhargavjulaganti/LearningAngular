@@ -28,8 +28,8 @@ export class DeadliftComponent implements OnInit {
   ShowData: boolean;
   selectedWorkoutValue: any;
   selectedExcerciseValue: any;
-  successMessage:any;
-
+  successMessage:string;
+  showAlert: boolean;
 
   private map = new Map<string, string[]>([
     // tslint:disable-next-line: max-line-length
@@ -106,6 +106,7 @@ export class DeadliftComponent implements OnInit {
       })).subscribe();
   }
 
+
   PostWorkout() {
 
     var postBody =
@@ -124,8 +125,19 @@ export class DeadliftComponent implements OnInit {
 
     this.http.post<any>(url, postBody).subscribe
       (data => {
+        console.log("The success message value before post+" + this.successMessage);
         console.log("the post data is" + data);
         this.successMessage = data;
+        this.showAlert = true;
       });
   }
+
+
+  // This function will close the success alert once we click on close button
+  close() {
+    console.log(' this is close function');
+    this.showAlert = false;
+  }
 }
+
+
