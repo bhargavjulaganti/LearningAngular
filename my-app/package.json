@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "aws-deploy":"aws s3 sync /Users/bhaagi/dev/LearningAngular/my-app/dist/my-app s3://workoutbucket2712"
   },
   "private": true,
   "dependencies": {
