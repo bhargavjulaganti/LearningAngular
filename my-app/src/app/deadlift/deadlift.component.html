@@ -16,33 +16,33 @@
 <form [formGroup]="EnterWorkoutForm" (ngSubmit)="onSubmit()">
   <div class="form-group has-success">
     <label class="form-control-label">Set1</label>
-    <input type="text" class="form-control-inline" id="Set1" formControlName="Set1">
+    <input type="text" pattern="[0-9]*" class="form-control-inline" id="Set1" formControlName="Set1">
     <!-- formControlName="Set1" -->
     <label></label>
     <span class="input-group-addon"> Reps </span>
-    <input type="text" class="form-control-inline" id="Set1Reps" formControlName="Reps1">
+    <input type="text" pattern="[0-9]*" class="form-control-inline" id="Set1Reps" formControlName="Reps1">
   </div>
 
   <div class="form-group has-success">
     <label class="form-control-label">Set2</label>
-    <input type="text" class="form-control-inline" id="Set2" formControlName="Set2">
+    <input type="text"  pattern="[0-9]*" class="form-control-inline" id="Set2" formControlName="Set2">
     <span class="input-group-addon"> Reps </span>
-    <input type="text" class="form-control-inline" id="Set2Reps" formControlName="Reps2">
+    <input type="text"  pattern="[0-9]*" class="form-control-inline" id="Set2Reps" formControlName="Reps2">
   </div>
 
   <div class="form-group has-success">
     <label class="form-control-label">Set3</label>
-    <input type="text" class="form-control-inline" id="Set3" formControlName="Set3">
+    <input type="text" pattern="[0-9]*" class="form-control-inline" id="Set3" formControlName="Set3">
     <span class="input-group-addon"> Reps </span>
-    <input type="text" class="form-control-inline" id="Set3Reps" formControlName="Reps3">
+    <input type="text" pattern="[0-9]*" class="form-control-inline" id="Set3Reps" formControlName="Reps3">
   </div>
 
 
   <div class="form-group has-success">
     <label class="form-control-label">Set4</label>
-    <input type="text" class="form-control-inline" id="Set4" formControlName="Set4">
+    <input type="text" pattern="[0-9]*" class="form-control-inline" id="Set4" formControlName="Set4">
     <span class="input-group-addon"> Reps </span>
-    <input type="text" class="form-control-inline" id="Set4Reps" formControlName="Reps4">
+    <input type="text" pattern="[0-9]*" class="form-control-inline" id="Set4Reps" formControlName="Reps4">
   </div>
 
   <div class="form-group has-success">
