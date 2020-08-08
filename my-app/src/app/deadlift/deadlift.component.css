@@ -2,8 +2,21 @@ select {
   margin: 10px;
 }
 
-input {
+/* #Set1 {
   width: 100px;
+} */
+
+/* input {
+  width: 100px;
+} */
+
+.form-control-inline {
+  width: 100px;
+}
+
+#Notes {
+  size: 100;
+  width: 300px;
 }
 
 .Set1 {
