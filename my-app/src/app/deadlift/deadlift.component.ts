@@ -100,13 +100,13 @@ export class DeadliftComponent implements OnInit {
       .pipe(map(data => {
         if (data) {
           this.Items = data;
-
-          this.ShowData = true;
+          this.ShowData = true; // show workout details only when a drop down is selected
         }
       })).subscribe();
   }
 
 
+  // Adding workout to the dynamo db
   PostWorkout() {
 
     var postBody =
@@ -129,6 +129,9 @@ export class DeadliftComponent implements OnInit {
         console.log("the post data is" + data);
         this.successMessage = data;
         this.showAlert = true;
+        console.log('resetting the form');
+        this.EnterWorkoutForm.reset(); // This to reset the form after submit
+        this.ngOnInit(); // This is to refresh form after submitting a workout
       });
   }
 
@@ -138,6 +141,12 @@ export class DeadliftComponent implements OnInit {
     console.log(' this is close function');
     this.showAlert = false;
   }
+
+  // https://stackoverflow.com/questions/51435333/reset-form-in-angular-5-after-submit
+  // onsubmit() {
+  //   console.log('this is the submit form');
+  //   this.EnterWorkoutForm.reset();
+  // }
 }
 
 
