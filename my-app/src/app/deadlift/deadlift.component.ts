@@ -35,10 +35,10 @@ export class DeadliftComponent implements OnInit {
     // tslint:disable-next-line: max-line-length
     ['Chest', ['DumbbellPullOver', 'DumbbellDeclineBenchPress', 'BarbellBenchPress', 'PecDeckFly', 'DumbbellBenchPress', 'DumbbellInclineBenchPress', 'DumbbellFlys']],
     ['Back', ['SeatedCableRowsWideGrip', 'OneArmDumbbellRow', 'CloseGripFrontLatPulldown', 'StraightArmPulldown']],
-    ['Shoulders', ['FrontDeltRaise','MachineShoulderPress','BarbellShoulderPress','FrontPlateRaise']],
+    ['Shoulders', ['FrontDeltRaise','MachineShoulderPress','BarbellShoulderPress','FrontPlateRaise','ReverseFlyes']],
     ['Abs', ['BentKneeHipRaise', 'HandOver-HeadCrunch', 'ElbowToKneeSitUps', 'HangingLegRaises', 'BasicCrunches', 'MedicineBallCrunches', 'SeatedLegTucks']],
     ['Biceps', ['CloseGripEZBarCurl', 'CableBicepCurls', 'CableHammerCurls']],
-    ['Triceps', ['SkullCrusherEZBar','SeatedDumbbellTricepsExtension','OverheadTricepsExtension']],
+    ['Triceps', ['SkullCrusherEZBar','SeatedDumbbellTricepsExtension','OverheadTricepsExtension','V-BarCableExtensions']],
     ['Legs', ['BarbellSquats','LegPress','LegExtensions','GoodMornings','DumbbellStiffLegDeadlift','DumbbellSquats','SeatedCalfRaise']]
   ]);
 
