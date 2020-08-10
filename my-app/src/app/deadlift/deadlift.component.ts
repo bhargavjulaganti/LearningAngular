@@ -30,6 +30,7 @@ export class DeadliftComponent implements OnInit {
   selectedExcerciseValue: any;
   successMessage:string;
   showAlert: boolean;
+  notes: string;
 
   private map = new Map<string, string[]>([
     // tslint:disable-next-line: max-line-length
@@ -100,6 +101,23 @@ export class DeadliftComponent implements OnInit {
       .pipe(map(data => {
         if (data) {
           this.Items = data;
+
+          //  console.log('testing notes' + this.Items[0].Notes);
+          //  this.notes = this.Items[0].Notes;
+          //  console.log('notes value is ' + this.notes);
+
+          if(this.Items === undefined
+             && this.Items[0].Notes === undefined) {
+            console.log('inside the if loop');   
+            this.notes = null;
+          } else if(this.Items.length > 0) {
+            // console.log('length is' + this.Items.length + 'date is' + this.Items[this.Items.length-1].CreatedDate);
+            this.notes = this.Items[this.Items.length-1].Notes;
+            console.log('inside if loop');
+          } else {
+            this.notes = null;
+            console.log('inside else loop');
+          }
           this.ShowData = true; // show workout details only when a drop down is selected
         }
       })).subscribe();

@@ -52,7 +52,10 @@
 
   <button type="button" (click)="PostWorkout()" class="btn btn-primary">Submit</button>
 
-  <h3></h3>
+  <div>
+    <p *ngIf="notes!==null" id="LastSetNotes">{{notes}}</p>
+  </div>
+  
 </form>
 
 <p *ngIf="showAlert" style="width:310px">

@@ -19,6 +19,14 @@ select {
   width: 300px;
 }
 
+#LastSetNotes {
+  color: red;
+  right: -34px;
+  position: relative;
+  bottom: -7px;
+  width: 300px;
+}
+
 .Set1 {
   margin: 1px;
 }
