@@ -36,10 +36,10 @@ export class DeadliftComponent implements OnInit {
     // tslint:disable-next-line: max-line-length
     ['Chest', ['DumbbellPullOver', 'DumbbellDeclineBenchPress', 'BarbellBenchPress', 'PecDeckFly', 'DumbbellBenchPress', 'DumbbellInclineBenchPress', 'DumbbellFlys']],
     ['Back', ['SeatedCableRowsWideGrip', 'OneArmDumbbellRow', 'CloseGripFrontLatPulldown', 'StraightArmPulldown']],
-    ['Shoulders', ['FrontDeltRaise','MachineShoulderPress','BarbellShoulderPress','FrontPlateRaise','ReverseFlyes']],
+    ['Shoulders', ['FrontDeltRaise','MachineShoulderPress','BarbellShoulderPress','FrontPlateRaise','ReverseFlyes','ArnoldDumbbellPressSeated','BarbellShrugs','DumbbellLateralRaise']],
     ['Abs', ['BentKneeHipRaise', 'HandOver-HeadCrunch', 'ElbowToKneeSitUps', 'HangingLegRaises', 'BasicCrunches', 'MedicineBallCrunches', 'SeatedLegTucks']],
-    ['Biceps', ['CloseGripEZBarCurl', 'CableBicepCurls', 'CableHammerCurls']],
-    ['Triceps', ['SkullCrusherEZBar','SeatedDumbbellTricepsExtension','OverheadTricepsExtension','V-BarCableExtensions']],
+    ['Biceps', ['CloseGripEZBarCurl', 'CableBicepCurls', 'CableHammerCurls', 'AlternateInclineDumbbellCurl']],
+    ['Triceps', ['SkullCrusherEZBar','SeatedDumbbellTricepsExtension','OverheadTricepsExtension','V-BarCableExtensions','TricepRopePullDown']],
     ['Legs', ['BarbellSquats','LegPress','LegExtensions','GoodMornings','DumbbellStiffLegDeadlift','DumbbellSquats','SeatedCalfRaise']]
   ]);
 
