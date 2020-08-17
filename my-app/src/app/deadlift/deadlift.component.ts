@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ComponentFactoryResolver } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { catchError, finalize, map } from 'rxjs/operators';
+import { catchError, finalize, map, concat } from 'rxjs/operators';
 import { GetData } from './deadlift.response';
 import { formatDate } from '@angular/common';
+import { Workout } from '../Interfaces/IWorkout';
 
 @Component({
   selector: 'app-deadlift',
@@ -28,19 +29,22 @@ export class DeadliftComponent implements OnInit {
   ShowData: boolean;
   selectedWorkoutValue: any;
   selectedExcerciseValue: any;
-  successMessage:string;
+  successMessage: string;
   showAlert: boolean;
   notes: string;
+  todaysWorkout: any;
+  todaysWorkout1: any;
+  finalTodaysWorkout: Array<Workout>;
 
   private map = new Map<string, string[]>([
     // tslint:disable-next-line: max-line-length
     ['Chest', ['DumbbellPullOver', 'DumbbellDeclineBenchPress', 'BarbellBenchPress', 'PecDeckFly', 'DumbbellBenchPress', 'DumbbellInclineBenchPress', 'DumbbellFlys']],
     ['Back', ['SeatedCableRowsWideGrip', 'OneArmDumbbellRow', 'CloseGripFrontLatPulldown', 'StraightArmPulldown']],
-    ['Shoulders', ['FrontDeltRaise','MachineShoulderPress','BarbellShoulderPress','FrontPlateRaise','ReverseFlyes','ArnoldDumbbellPressSeated','BarbellShrugs','DumbbellLateralRaise']],
+    ['Shoulders', ['FrontDeltRaise', 'MachineShoulderPress', 'BarbellShoulderPress', 'FrontPlateRaise', 'ReverseFlyes', 'ArnoldDumbbellPressSeated', 'BarbellShrugs', 'DumbbellLateralRaise']],
     ['Abs', ['BentKneeHipRaise', 'HandOver-HeadCrunch', 'ElbowToKneeSitUps', 'HangingLegRaises', 'BasicCrunches', 'MedicineBallCrunches', 'SeatedLegTucks']],
     ['Biceps', ['CloseGripEZBarCurl', 'CableBicepCurls', 'CableHammerCurls', 'AlternateInclineDumbbellCurl']],
-    ['Triceps', ['SkullCrusherEZBar','SeatedDumbbellTricepsExtension','OverheadTricepsExtension','V-BarCableExtensions','TricepRopePullDown']],
-    ['Legs', ['BarbellSquats','LegPress','LegExtensions','GoodMornings','DumbbellStiffLegDeadlift','DumbbellSquats','SeatedCalfRaise']]
+    ['Triceps', ['SkullCrusherEZBar', 'SeatedDumbbellTricepsExtension', 'OverheadTricepsExtension', 'V-BarCableExtensions', 'TricepRopePullDown']],
+    ['Legs', ['BarbellSquats', 'LegPress', 'LegExtensions', 'GoodMornings', 'DumbbellStiffLegDeadlift', 'DumbbellSquats', 'SeatedCalfRaise']]
   ]);
 
   country: string;
@@ -87,6 +91,7 @@ export class DeadliftComponent implements OnInit {
     this.selectedWorkoutValue = event.target.value;
     console.log("************");
     console.log(this.loginForm.value.TextID);
+    this.getTodaysWorkout();
   }
 
   selectedExcerciseType(event: any) {
@@ -106,13 +111,13 @@ export class DeadliftComponent implements OnInit {
           //  this.notes = this.Items[0].Notes;
           //  console.log('notes value is ' + this.notes);
 
-          if(this.Items === undefined
-             && this.Items[0].Notes === undefined) {
-            console.log('inside the if loop');   
+          if (this.Items === undefined
+            && this.Items[0].Notes === undefined) {
+            console.log('inside the if loop');
             this.notes = null;
-          } else if(this.Items.length > 0) {
+          } else if (this.Items.length > 0) {
             // console.log('length is' + this.Items.length + 'date is' + this.Items[this.Items.length-1].CreatedDate);
-            this.notes = this.Items[this.Items.length-1].Notes;
+            this.notes = this.Items[this.Items.length - 1].Notes;
             console.log('inside if loop');
           } else {
             this.notes = null;
@@ -161,11 +166,19 @@ export class DeadliftComponent implements OnInit {
     this.showAlert = false;
   }
 
-  // https://stackoverflow.com/questions/51435333/reset-form-in-angular-5-after-submit
-  // onsubmit() {
-  //   console.log('this is the submit form');
-  //   this.EnterWorkoutForm.reset();
-  // }
+  getTodaysWorkout() {
+    this.todaysWorkout = this.http.get<GetData>(`${DeadliftComponent.hostName}/todaysworkout?WorkoutDate=08/14/2020`)
+      .pipe(map(data => {
+        for (let i = 0; i < 2; i++) {
+          if (this.finalTodaysWorkout === undefined) {
+            this.finalTodaysWorkout = data[0];
+          } else {
+            this.finalTodaysWorkout.push(data[1][0]);
+          }
+        }
+      })
+      ).subscribe();
+  }
 }
 
 
