@@ -155,7 +155,7 @@ export class DeadliftComponent implements OnInit {
         console.log('resetting the form');
         this.EnterWorkoutForm.reset(); // This to reset the form after submit
         this.selectedExercise(); // calling get again to refresh data 
-        // this.ngOnInit(); // This is to refresh form after submitting a workout
+        this.ngOnInit(); // This is to refresh form after submitting a workout
       });
   }
 
