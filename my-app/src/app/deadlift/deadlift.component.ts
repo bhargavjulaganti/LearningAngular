@@ -39,7 +39,7 @@ export class DeadliftComponent implements OnInit {
   private map = new Map<string, string[]>([
     // tslint:disable-next-line: max-line-length
     ['Chest', ['DumbbellPullOver', 'DumbbellDeclineBenchPress', 'BarbellBenchPress', 'PecDeckFly', 'DumbbellBenchPress', 'DumbbellInclineBenchPress', 'DumbbellFlys']],
-    ['Back', ['SeatedCableRowsWideGrip', 'OneArmDumbbellRow', 'CloseGripFrontLatPulldown', 'StraightArmPulldown']],
+    ['Back', ['SeatedCableRowsWideGrip', 'OneArmDumbbellRow', 'CloseGripFrontLatPulldown', 'StraightArmPulldown','BarbellDeadlift']],
     ['Shoulders', ['FrontDeltRaise', 'MachineShoulderPress', 'BarbellShoulderPress', 'FrontPlateRaise', 'ReverseFlyes', 'ArnoldDumbbellPressSeated', 'BarbellShrugs', 'DumbbellLateralRaise']],
     ['Abs', ['BentKneeHipRaise', 'HandOver-HeadCrunch', 'ElbowToKneeSitUps', 'HangingLegRaises', 'BasicCrunches', 'MedicineBallCrunches', 'SeatedLegTucks']],
     ['Biceps', ['CloseGripEZBarCurl', 'CableBicepCurls', 'CableHammerCurls', 'AlternateInclineDumbbellCurl']],
