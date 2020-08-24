@@ -19,7 +19,8 @@ export class MyworkoutComponent implements OnInit {
 
   todaysWorkout: any;
   todaysWorkout1: any;
-  finalTodaysWorkout: Array<Workout>;
+  finalTodaysWorkout: any; // Array<Workout>;
+  showTodaysWorkout: boolean;
   
   constructor( private http: HttpClient ) { }
 
@@ -32,15 +33,15 @@ export class MyworkoutComponent implements OnInit {
     // d.setDate(d.getDate()-5); // subtract days
     this.todaysWorkout = this.http.get<GetData>(`${MyworkoutComponent.hostName}/todaysworkout?WorkoutDate=` + formatDate(d, 'MM/dd/yyyy', 'en'))
       .pipe(map(data => {
-        for (let i = 0; i < 2; i++) {
-          if (this.finalTodaysWorkout === undefined) {
-            this.finalTodaysWorkout = data[0];
-          } else {
-            this.finalTodaysWorkout.push(data[1][0]);
-          }
+        console.log('final todays workout');
+        if (data ) {
+          this.finalTodaysWorkout = data;
+          console.log('inside if loop');
+          this.showTodaysWorkout = this.finalTodaysWorkout.length >0 ? true : false ;  
+          console.log(this.showTodaysWorkout);
+          console.log(this.finalTodaysWorkout.length);
         }
       })
       ).subscribe();
   }
-
 }

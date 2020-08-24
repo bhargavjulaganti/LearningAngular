@@ -91,7 +91,7 @@ export class DeadliftComponent implements OnInit {
     this.selectedWorkoutValue = event.target.value;
     console.log("************");
     console.log(this.loginForm.value.TextID);
-    this.getTodaysWorkout();
+    // this.getTodaysWorkout();
   }
 
   selectedExcerciseType(event: any) {
@@ -117,7 +117,7 @@ export class DeadliftComponent implements OnInit {
             this.notes = null;
           } else if (this.Items.length > 0) {
             // console.log('length is' + this.Items.length + 'date is' + this.Items[this.Items.length-1].CreatedDate);
-            this.notes = this.Items[this.Items.length - 1].Notes;
+            this.notes = this.Items[0].Notes;
             console.log('inside if loop');
           } else {
             this.notes = null;
@@ -166,19 +166,19 @@ export class DeadliftComponent implements OnInit {
     this.showAlert = false;
   }
 
-  getTodaysWorkout() {
-    this.todaysWorkout = this.http.get<GetData>(`${DeadliftComponent.hostName}/todaysworkout?WorkoutDate=08/14/2020`)
-      .pipe(map(data => {
-        for (let i = 0; i < 2; i++) {
-          if (this.finalTodaysWorkout === undefined) {
-            this.finalTodaysWorkout = data[0];
-          } else {
-            this.finalTodaysWorkout.push(data[1][0]);
-          }
-        }
-      })
-      ).subscribe();
-  }
+  // getTodaysWorkout() {
+  //   this.todaysWorkout = this.http.get<GetData>(`${DeadliftComponent.hostName}/todaysworkout?WorkoutDate=08/14/2020`)
+  //     .pipe(map(data => {
+  //       for (let i = 0; i < 2; i++) {
+  //         if (this.finalTodaysWorkout === undefined) {
+  //           this.finalTodaysWorkout = data[0];
+  //         } else {
+  //           this.finalTodaysWorkout.push(data[1][0]);
+  //         }
+  //       }
+  //     })
+  //     ).subscribe();
+  // }
 }
 
 

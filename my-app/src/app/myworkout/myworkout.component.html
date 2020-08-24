@@ -3,7 +3,7 @@
 </h1>
 
 
-<table  class="table table-hover table-bordered" style="width:25%">
+<table  *ngIf="showTodaysWorkout" class="table table-hover table-bordered" style="width:25%">
   <thead>
     <tr>
       <th scope="col">WorkoutType</th>
@@ -15,12 +15,12 @@
   </thead>
   <tbody>
 
-    <tr class="table-primary" *ngFor="let item of finalTodaysWorkout">
-      <td>{{item.WorkOutType}}</td>
-      <td>{{item.Set1}}</td>
-      <td>{{item.Set2}}</td>
-      <td>{{item.Set3}}</td>
-      <td>{{item.Set4}}</td>
+    <tr class="table-primary" id="todaysWorkoutTable" *ngFor="let item of finalTodaysWorkout">
+      <td id="todaysWorkoutRow">{{item.WorkOutType}}</td>
+      <td id="todaysWorkoutRow">{{item.Set1}}</td>
+      <td id="todaysWorkoutRow">{{item.Set2}}</td>
+      <td id="todaysWorkoutRow">{{item.Set3}}</td>
+      <td id="todaysWorkoutRow">{{item.Set4}}</td>
     </tr>
   </tbody>
 </table>
