@@ -1,26 +1,50 @@
 <h1>
-  myworkout log!
+  Patient workout log
 </h1>
 
 
-<table  *ngIf="showTodaysWorkout" class="table table-hover table-bordered" style="width:25%">
+
+<!-- <div class="form-group has-success">
+    <label class="form-control-label">Enter Patient Given Name</label>
+    <input type="text" pattern="[0-9]*" class="form-control-inline" id="Set1" formControlName="Set1">
+    <label></label>
+  </div> -->
+
+<form [formGroup]="EnterWorkoutForm" (ngSubmit)="onSubmit()">
+  <div class="form-group has-success">
+    <label class="form-control-label"> Enter Patient Given Name </label>
+    <input type="text" pattern="[0-9]*" class="form-control-inline" id="Set1" formControlName="Set1">
+    <!-- formControlName="Set1" -->
+  </div>
+  <button type="button" (click)="GetPatientDetails()" class="btn btn-primary">Submit</button>
+</form>
+
+
+
+<h4>FirstName : {{givenname}}</h4>
+<h4>TelephoneNumber : {{telephonenumber}}</h4>
+<h4>Id : {{patientID}}</h4>
+
+<table class="table table-hover table-bordered" style="width:25%">
   <thead>
     <tr>
-      <th scope="col">WorkoutType</th>
-      <th scope="col">Set1</th>
-      <th scope="col">Set2</th>
-      <th scope="col">Set3</th>
-      <th scope="col">Set4</th>
+      <th scope="col">Weight</th>
+      <th scope="col">DateTime</th>
+      <th scope="col">Notes</th>
+      <!-- <th scope="col">Notes</th> -->
     </tr>
   </thead>
+
   <tbody>
 
-    <tr class="table-primary" id="todaysWorkoutTable" *ngFor="let item of finalTodaysWorkout">
-      <td id="todaysWorkoutRow">{{item.WorkOutType}}</td>
-      <td id="todaysWorkoutRow">{{item.Set1}}</td>
-      <td id="todaysWorkoutRow">{{item.Set2}}</td>
-      <td id="todaysWorkoutRow">{{item.Set3}}</td>
-      <td id="todaysWorkoutRow">{{item.Set4}}</td>
+    <tr class="table-primary" *ngFor="let item of weightDetailsNotes">
+      <!-- <th scope="row">Primary</th> -->
+      <td>{{item.text}}</td>
+      <td>{{item.time | date}}</td>
+      <td>{{item.authorString}}</td>
+      <!-- <td>{{item.Notes}}</td> -->
     </tr>
   </tbody>
+
 </table>
+

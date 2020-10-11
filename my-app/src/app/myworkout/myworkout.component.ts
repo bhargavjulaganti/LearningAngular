@@ -5,6 +5,8 @@ import { GetData } from '../deadlift/deadlift.response';
 import { HttpClient } from '@angular/common/http';
 import { catchError, finalize, map, concat } from 'rxjs/operators';
 import { formatDate } from '@angular/common';
+import { GetPatientPersonalData, postbody, WeightNotes } from './GetpatientByName.response';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-myworkout',
@@ -13,35 +15,107 @@ import { formatDate } from '@angular/common';
 })
 export class MyworkoutComponent implements OnInit {
 
-  private static readonly hostName = "https://q6rrg5mw2k.execute-api.us-east-2.amazonaws.com/default";
+  private static readonly hostName = 'https://r4.smarthealthit.org/Patient?family=';
 
   workouts = workouts;
 
   todaysWorkout: any;
-  todaysWorkout1: any;
-  finalTodaysWorkout: any; // Array<Workout>;
+  weightDetails: any;
+  weightDetailsNotes: any;
+  finalTodaysWorkout: any;  //Array<Workout>;
   showTodaysWorkout: boolean;
-  
+  firstname: any;
+  givenname: string;
+  telephonenumber: string;
+  showDetails: boolean;
+  patientID: string;
+  customNotes: any[];
+  mynotes: WeightNotes;
+
+  FinalBody: postbody;
   constructor( private http: HttpClient ) { }
 
+  EnterWorkoutForm = new FormGroup({
+    Set1: new FormControl('')
+  });
+
   ngOnInit() {
-    this.getTodaysWorkout();
+    // this.getTodaysWorkout();
   }
 
-  getTodaysWorkout() {
-    var d = new Date();
+  getPatientDetails(familyname: string) {
+    let d = new Date();
     // d.setDate(d.getDate()-5); // subtract days
-    this.todaysWorkout = this.http.get<GetData>(`${MyworkoutComponent.hostName}/todaysworkout?WorkoutDate=` + formatDate(d, 'MM/dd/yyyy', 'en'))
+    // tslint:disable-next-line: max-line-length
+    this.todaysWorkout = this.http.get<any>(`https://r4.smarthealthit.org/Patient?family=` + familyname)
       .pipe(map(data => {
         console.log('final todays workout');
         if (data ) {
-          this.finalTodaysWorkout = data;
-          console.log('inside if loop');
-          this.showTodaysWorkout = this.finalTodaysWorkout.length >0 ? true : false ;  
-          console.log(this.showTodaysWorkout);
-          console.log(this.finalTodaysWorkout.length);
+          console.log('The data is');
+          console.log(data.entry[0].resource.name[0].given[0]);
+          console.log(data.entry[0].resource.telecom[0].value);
+          this.givenname = data.entry[0].resource.name[0].given[0];
+          this.telephonenumber = data.entry[0].resource.telecom[0].value;
+          this.patientID = data.entry[0].resource.id;
+          console.log('patient ID is');
+          console.log(this.patientID);
+          console.log('telephone number in get patientdetails');
+          console.log(this.telephonenumber);
+          this.getWeightDetails(this.patientID);
         }
       })
       ).subscribe();
+  }
+
+  getWeightDetails(id: string) {
+
+    this.weightDetails = this.http.get<any>(`https://r4.smarthealthit.org/Observation?patient=` + '2cda5aad-e409-4070-9a15-e1c35c46ed5a') //id)
+    .pipe(map(data => {
+      console.log('final todays workout');
+      if (data ) {
+        console.log('get weight details');
+        console.log('length is');
+        console.log(data.entry.length);
+        this.weightDetailsNotes = data.entry[0].resource.note;
+        this.FinalBody = data.entry[0].resource;
+        console.log('the final body is');
+        console.log(this.FinalBody);
+
+        this.customNotes = data.entry[0].resource.note;
+        this.mynotes = {
+          authorString: 'testing from code233',
+          time: '2020-10-10T22:20:24.262Z',
+          text: '67'
+        };
+        // this.customNotes.push(this.mynotes);
+        // console.log('My Custom Notes');
+
+        this.FinalBody.note.push(this.mynotes);
+        console.log('the final body after adding new input');
+        console.log(this.FinalBody);
+
+
+
+        console.log(data.entry[0].resource.note[0].authorString);
+      }
+    })
+    ).subscribe();
+  }
+
+  GetPatientDetails() {
+
+    console.log('patient details');
+
+    let Set4 = `${this.EnterWorkoutForm.value.Set1}`;
+    console.log(' set4 is ');
+    console.log(Set4);
+    console.log('telecom number is ');
+    console.log(this.telephonenumber);
+    this.getPatientDetails(Set4);
+    console.log('given name is ');
+    console.log(this.givenname);
+    this.showDetails = true;
+    console.log('show details value is');
+    console.log(this.showDetails);
   }
 }
