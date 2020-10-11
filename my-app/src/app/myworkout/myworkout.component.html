@@ -19,32 +19,53 @@
   <button type="button" (click)="GetPatientDetails()" class="btn btn-primary">Submit</button>
 </form>
 
+<div *ngIf="showDetails">
+  <h4>FirstName : {{givenname}}</h4>
+  <h4>TelephoneNumber : {{telephonenumber}}</h4>
+  <h4>Id : {{patientID}}</h4>
+</div>
 
+<div *ngIf="showErrorMessage">
+  <h4>Enter correct name</h4>
+</div>
 
-<h4>FirstName : {{givenname}}</h4>
-<h4>TelephoneNumber : {{telephonenumber}}</h4>
-<h4>Id : {{patientID}}</h4>
+<div *ngIf="showDetails">
+  <form [formGroup]="EnterNotesForm" (ngSubmit)="onSubmit()">
+    <div class="form-group has-success">
+      <label class="form-control-label"> Author </label>
+      <input type="text" pattern="[0-9]*" class="form-control-inline" id="authorString" formControlName="authorString">
+      <!-- <label class="form-control-label"> text </label>
+      <input type="text" pattern="[0-9]*" class="form-control-inline" id="text" formControlName="text"> -->
+      <!-- formControlName="Set1" -->
+    </div>
+    <div class="form-group has-success">
+      <label class="form-control-label"> text </label>
+      <input type="text" pattern="[0-9]*" class="form-control-inline" id="text" formControlName="text">
+    </div>
+    <button type="button" (click)="GetNotesDetails()" class="btn btn-primary">Submit</button>
+  </form>
+</div>
 
-<table class="table table-hover table-bordered" style="width:25%">
-  <thead>
-    <tr>
-      <th scope="col">Weight</th>
-      <th scope="col">DateTime</th>
-      <th scope="col">Notes</th>
-      <!-- <th scope="col">Notes</th> -->
-    </tr>
-  </thead>
+<div *ngIf="showDetails">
+  <table class="table table-hover table-bordered" style="width:25%">
+    <thead>
+      <tr>
+        <th scope="col">Weight</th>
+        <th scope="col">DateTime</th>
+        <th scope="col">Notes</th>
+        <!-- <th scope="col">Notes</th> -->
+      </tr>
+    </thead>
 
-  <tbody>
+    <tbody>
 
-    <tr class="table-primary" *ngFor="let item of weightDetailsNotes">
-      <!-- <th scope="row">Primary</th> -->
-      <td>{{item.text}}</td>
-      <td>{{item.time | date}}</td>
-      <td>{{item.authorString}}</td>
-      <!-- <td>{{item.Notes}}</td> -->
-    </tr>
-  </tbody>
-
-</table>
-
+      <tr class="table-primary" *ngFor="let item of weightDetailsNotes">
+        <!-- <th scope="row">Primary</th> -->
+        <td>{{item.text}}</td>
+        <td>{{item.time | date}}</td>
+        <td>{{item.authorString}}</td>
+        <!-- <td>{{item.Notes}}</td> -->
+      </tr>
+    </tbody>
+  </table>
+</div>
