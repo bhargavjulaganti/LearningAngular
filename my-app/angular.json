@@ -25,7 +25,7 @@
             ],
             "styles": [
               "src/styles.css",
-              "src/css/bootstrap.darkly.min.css"
+              "src/css/bootstrap.min.css"
             ],
             "scripts": []
           },

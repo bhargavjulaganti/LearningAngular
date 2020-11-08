@@ -29,7 +29,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: MyworkoutComponent},
-      { path: 'deadlift', component: DeadliftComponent},
+      { path: 'logworkout', component: DeadliftComponent},
       { path: 'benchpress', component: BenchpressComponent},
       { path: 'squats', component: SquatComponent}
   ]),

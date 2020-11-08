@@ -41,6 +41,11 @@ export class MyworkoutComponent implements OnInit {
     Set1: new FormControl('')
   });
 
+  EnterCredentials = new FormGroup({
+    Username: new FormControl(''),
+    Password: new FormControl('')
+  })
+
   EnterNotesForm = new FormGroup({
     authorString: new FormControl(''),
     text: new FormControl('')
@@ -186,5 +191,10 @@ export class MyworkoutComponent implements OnInit {
         console.log('posted data');
         console.log(data);
       });
+  }
+
+  ValidateCredentials() {
+    console.log(this.EnterCredentials.value.Username);
+    console.log(this.EnterCredentials.value.Password);
   }
 }
