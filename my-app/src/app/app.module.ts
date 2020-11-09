@@ -12,6 +12,7 @@ import { HttpClientModule} from '@angular/common/http';
 
 // Third party modules
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MyworkoutComponent,
     DeadliftComponent,
     BenchpressComponent,
-    SquatComponent
+    SquatComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +30,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      { path: '', component: MyworkoutComponent},
+      { path: '', component: LoginComponent},
+      { path: 'patientdetails', component: MyworkoutComponent},
       { path: 'logworkout', component: DeadliftComponent},
       { path: 'benchpress', component: BenchpressComponent},
       { path: 'squats', component: SquatComponent}
