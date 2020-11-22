@@ -14,6 +14,7 @@ import { HttpClientModule} from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './guards/auth.guard';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AuthGuard } from './guards/auth.guard';
     DeadliftComponent,
     BenchpressComponent,
     SquatComponent,
-    LoginComponent
+    LoginComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,8 @@ import { AuthGuard } from './guards/auth.guard';
       { path: 'patientdetails', component: MyworkoutComponent, canActivate: [AuthGuard]},
       { path: 'logworkout', component: DeadliftComponent, canActivate: [AuthGuard]},
       { path: 'benchpress', component: BenchpressComponent},
-      { path: 'squats', component: SquatComponent}
+      { path: 'squats', component: SquatComponent},
+      { path: 'logout', component: LogoutComponent}
   ]),
   NgbModule,
   ],

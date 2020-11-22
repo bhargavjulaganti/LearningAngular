@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Router, CanActivate } from '@angular/router';
 import { AuthGuard } from '../guards/auth.guard';
+import { AuthService } from '../guards/auth.service';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { AuthGuard } from '../guards/auth.guard';
 })
 export class LoginComponent implements OnInit {
 
-  private authGuard: AuthGuard;
+  private authService: AuthService;
 
   EnterCredentials = new FormGroup({
     Username: new FormControl(''),
@@ -29,9 +30,7 @@ export class LoginComponent implements OnInit {
     console.log(this.EnterCredentials.value.Username);
     console.log(this.EnterCredentials.value.Password);
     if (this.EnterCredentials.value.Username == 'test' && this.EnterCredentials.value.Password == 'test') {
-      console.log("Successful login");
-      this.authGuard.canActivate();
-      this.router.navigate(['/patientdetails']);
+      localStorage.setItem('localStorageLoggedIn', 'true');
     } else {
       this.showAlert=true;
     }
