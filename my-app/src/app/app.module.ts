@@ -15,6 +15,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './guards/auth.guard';
 import { LogoutComponent } from './logout/logout.component';
+import { AdminGuard } from './guards/admin.guard';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { LogoutComponent } from './logout/logout.component';
     RouterModule.forRoot([
       { path: '', component: LoginComponent},
       { path: 'patientdetails', component: MyworkoutComponent, canActivate: [AuthGuard]},
-      { path: 'logworkout', component: DeadliftComponent, canActivate: [AuthGuard]},
+      { path: 'logworkout', component: DeadliftComponent, canActivate: [AdminGuard]},
       { path: 'benchpress', component: BenchpressComponent},
       { path: 'squats', component: SquatComponent},
       { path: 'logout', component: LogoutComponent}

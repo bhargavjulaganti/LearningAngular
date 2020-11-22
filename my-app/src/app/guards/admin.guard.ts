@@ -1,19 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { LoginComponent } from '../login/login.component';
+import { CanActivate } from '@angular/router';
 import { AuthService } from './auth.service';
 
-
 @Injectable({ providedIn: 'root' })
-export class AuthGuard implements CanActivate {
-    userLoggedIn = false;
+export class AdminGuard implements CanActivate {
+    adminLoggedIn = false;
 
     constructor(
         private authService : AuthService
     ) { }
 
     canActivate() {
-        if (this.authService.isUserLoggedIn()) {
+        if (this.authService.isAdminLoggedIn()) {
             return true;
             // this.router.navigate(['/patientdetails']);
         } else {
@@ -21,4 +19,3 @@ export class AuthGuard implements CanActivate {
         }
     }
 }
-

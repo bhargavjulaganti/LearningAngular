@@ -28,6 +28,7 @@ export class MyworkoutComponent implements OnInit {
   givenname: string;
   telephonenumber: string;
   showDetails: boolean;
+  loadMyWorkoutComponent: boolean;
   patientID: string;
   customNotes: any[];
   mynotes: WeightNotes;
@@ -49,7 +50,6 @@ export class MyworkoutComponent implements OnInit {
   });
 
   ngOnInit() {
-    // this.getTodaysWorkout();
   }
 
   getPatientDetails(familyname: string) {

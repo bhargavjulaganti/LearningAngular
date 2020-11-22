@@ -23,4 +23,12 @@ export class AuthService {
         
         return false;
     }
+
+    isAdminLoggedIn() {
+        if(localStorage.getItem('adminStorageLoggedIn') == 'true') {
+            console.log('admin service if');
+            return true;
+        }
+        return false;
+    }
 }
