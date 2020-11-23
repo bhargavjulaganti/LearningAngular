@@ -35,8 +35,8 @@ import { AdminGuard } from './guards/admin.guard';
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: LoginComponent},
-      { path: 'patientdetails', component: MyworkoutComponent, canActivate: [AuthGuard]},
-      { path: 'logworkout', component: DeadliftComponent, canActivate: [AdminGuard]},
+      { path: 'patientdetails', component: MyworkoutComponent, canActivate: [ AdminGuard]},
+      { path: 'logworkout', component: DeadliftComponent, canActivate: [AuthGuard]},
       { path: 'benchpress', component: BenchpressComponent},
       { path: 'squats', component: SquatComponent},
       { path: 'logout', component: LogoutComponent}

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-logout',
@@ -7,12 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LogoutComponent implements OnInit {
 
-  constructor() { }
+  private checkedLoggedIn : boolean;
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
+
+    if(localStorage.getItem('localStorageLoggedIn') == 'true' 
+       ||localStorage.getItem('adminStorageLoggedIn') == 'true') {
+      console.log('auth service if');
+      localStorage.clear();
+      this.checkedLoggedIn = true;
+    } else {
+      this.router.navigate(['/']);
+    }
     
     console.log('always executes log out');
-    localStorage.clear();
+
   }
 
 }

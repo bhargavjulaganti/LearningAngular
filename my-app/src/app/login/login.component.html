@@ -1,25 +1,39 @@
-<form [formGroup]="EnterCredentials" (ngSubmit)="onSubmit()">
+<div *ngIf="isLoggedIn">
+  <p>
+    Welcome user
+  </p>
+</div>
+
+
+<div *ngIf="!isLoggedIn">
   <div>
 
   </div>
-  <div class="form-group has-success">
-    <label class="form-control-label"> Username </label>
-    <input type="text" pattern="[0-9]*" class="form-control-inline" id="Username" formControlName="Username">
+  <form [formGroup]="EnterCredentials" (ngSubmit)="onSubmit()">
+    <div>
+
+    </div>
+    <div class="form-group has-success">
+      <label class="form-control-label"> Username </label>
+      <input type="text" pattern="[0-9]*" class="form-control-inline" id="Username" formControlName="Username">
+    </div>
+
+    <div class="form-group has-success">
+      <label class="form-control-label"> Password </label>
+      <input type="password" pattern="[0-9]*" class="form-control-inline" id="Password" formControlName="Password">
+    </div>
+    <button type="button" (click)="ValidateCredentials()" class="btn btn-primary">Login</button>
+  </form>
+
+
+  <div *ngIf="showAlert">
+    <div class="alert alert-danger" style="width:fit-content" ng-reflect-ng-class="[object Object]">Username or password
+      is incorrect</div>
   </div>
 
-  <div class="form-group has-success">
-    <label class="form-control-label"> Password </label>
-    <input type="text" pattern="[0-9]*" class="form-control-inline" id="Password" formControlName="Password">
-  </div>
-  <button type="button" (click)="ValidateCredentials()" class="btn btn-primary">Login</button>
-</form>
+  <!--  Read this documentation for additional route gaurd validation-->
+
+  <!--  https://medium.com/javascript-in-plain-english/use-angular-route-guards-to-secure-angular-pages-by-allow-deny-or-redirect-to-other-page-view-f2537583e9a -->
 
 
-<div *ngIf="showAlert">
-  <div class="alert alert-danger" style="width:fit-content" ng-reflect-ng-class="[object Object]">Username or password
-    is incorrect</div>
 </div>
-
-<!--  Read this documentation for additional route gaurd validation-->
-
-<!--  https://medium.com/javascript-in-plain-english/use-angular-route-guards-to-secure-angular-pages-by-allow-deny-or-redirect-to-other-page-view-f2537583e9a -->
